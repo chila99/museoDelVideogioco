@@ -8,7 +8,7 @@ body{
   height: auto;
   display: flex;
   flex-direction: column;
-  font-size: 1.75rem;
+  font-size: calc(1rem + 1vw);
   margin-top: 100px;
 }
 
@@ -31,7 +31,7 @@ img{
 .sezioneStoria{
   width: 65%;
   height: auto;
-  font-size: calc(1rem + 1vw);
+  font-size: calc(0.8rem + 0.8vw);
   border-right: 2px solid;
   border-color: var(--grigioBello);
   padding-right: 5px;
