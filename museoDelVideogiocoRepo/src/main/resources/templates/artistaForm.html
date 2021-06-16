@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+  <head th:replace="fragments/base.html :: headerfiles(title=#{header.inserisciArtista})">
+  </head>
+  <head>
+    <link th:href="@{/css/loginForm.css}" rel="stylesheet"/>
+  </head>
+  <body>
+    
+    <!--header della pagina-->
+    <header th:replace="fragments/base.html :: intestazione">
+    </header>
+    
+    <section>
+
+      <div id="titoloLogin"  th:href="#{artista.inserisci}">Inserisci un nuovo artista</div>
+
+      <!--form artista-->
+      <form th:object="${artista}" th:action="@{/admin/addArtista}" method="POST">
+
+        <div id="elementiForm">
+          
+        <div  class="metaElementoForm">
+
+          <!--nome-->
+            <div class="elementoForm">
+              <div th:text="#{artista.form.nome}">Nome</div>
+              <div>
+                <input type="text" name="nome" required/>
+              </div>
+            </div>
+
+            <!--cognome-->
+          <div class="elementoForm">
+            <div th:text="#{artista.form.cognome}">Cognome</div>
+            <div>
+              <input type="text" name="cognome" required/>
+            </div>
+          </div>
+
+          <!--nazionalita-->
+          <div class="elementoForm">
+            <div th:text="#{artista.form.nazionalita}">Nazionalita</div>
+            <div>
+              <input type="text" name="nazionalita" required/>
+            </div>
+          </div>
+
+      </div>
+
+      <div class="metaElementoForm">
+        
+        <!--luogo nascita-->
+        <div class="elementoForm">
+          <div th:text="#{artista.form.luogoNascita}">Luogo di nascita</div>
+          <div>
+            <input type="text" name="luogoNascita" required/>
+          </div>
+        </div>
+
+        <!--data nascita-->
+        <div class="elementoForm">
+          <div th:text="#{artista.form.dataNascita}">Data di nascita</div>
+          <div>
+            <input class="data" type="date" name="dataNascita" required/>
+          </div>
+        </div>
+
+        <!--luogo morte-->
+        <div class="elementoForm">
+          <div th:text="#{artista.form.luogoMorte}">Luogo di morte</div>
+          <div>
+            <input type="text" name="luogoMorte" />
+          </div>
+        </div>
+
+        <!--data morte-->
+        <div class="elementoForm">
+          <div th:text="#{artista.form.dataMorte}">Data di morte</div>
+          <div>
+            <input class="data" type="date" name="dataMorte" />
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+        <button th:text="#{artista.form.inserisci}" type="submit">Inserisci</button>
+
+      <div th:if="${#fields.hasGlobalErrors()}">
+        <p class="errori" th:each="err : ${#fields.globalErrors()}" th:text="${err}"/>
+      </div>
+
+      <div  class="errori" th:if="${#fields.hasErrors('nome')}" th:errors="*{nome}"/>
+      <div  class="errori" th:if="${#fields.hasErrors('cognome')}" th:errors="*{cognome}"/>
+      <div  class="errori" th:if="${#fields.hasErrors('dataNascita')}" th:errors="*{dataNascita}"/>
+      <div  class="errori" th:if="${#fields.hasErrors('luogoNascita')}" th:errors="*{luogoNascita}"/>
+      <div  class="errori" th:if="${#fields.hasErrors('nazionalita')}" th:errors="*{nazionalita}"/>
+      </form>
+
+    </section>
+    
+    <!--footer della pagina-->
+    <footer th:replace="fragments/base.html :: fondo">
+    </footer>
+    
+  </body>
+</html>

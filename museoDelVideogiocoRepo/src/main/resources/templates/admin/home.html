@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+  <head th:replace="fragments/base.html :: headerfiles(title=#{header.home})">
+  </head>
+  <head>
+    <link th:href="@{/css/homePageMuseo.css}" rel="stylesheet"/>
+    <link th:href="@{/css/admin.css}" rel="stylesheet"/>
+  </head>
+  <body>
+    
+    <!--header della pagina-->
+    <header th:replace="fragments/base.html :: intestazione">
+    </header>
+    
+    <section>
+
+    	<div th:text="#{admin.homePage}" id="adminHome"/></div>
+
+    	<div id="sezionePrincipale">
+	    	<div id="sezioneSinistra" class="gestioneAdmin" />
+
+		      <a class="sceltaAdmin" th:text="#{admin.aggiungiArtista}" th:href="@{/admin/artista}"></a>
+
+		      <a class="sceltaAdmin" th:text="#{admin.aggiungiCollezione}" th:href="@{/admin/collezione}"></a>
+
+		      <a class="sceltaAdmin" th:text="#{admin.aggiungiOpera}" th:href="@{/admin/opera}"></a>
+
+		  </div>
+
+		  <div class="gestioneAdmin"/>
+
+		      <a class="sceltaAdmin" th:text="#{admin.eliminaArtista}" th:href="@{/artisti}"></a>
+
+		      <a class="sceltaAdmin" th:text="#{admin.eliminaCollezione}" th:href="@{/collezioni}"></a>
+
+		      <a class="sceltaAdmin" th:text="#{admin.eliminaOpera}" th:href="@{/opere}"></a>
+
+		  </div>
+
+		</div>
+
+    </section>
+    
+    <!--footer della pagina-->
+    <footer th:replace="fragments/base.html :: fondo">
+    </footer>
+    
+  </body>
+</html>

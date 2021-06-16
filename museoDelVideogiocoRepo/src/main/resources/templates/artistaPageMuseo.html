@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+   <head th:replace="fragments/base.html :: headerfiles(title=#{header.artista})">
+  </head>
+  <head>
+    <link th:href="@{/css/artistaPageMuseo.css}" rel="stylesheet"/>
+  </head>
+  <body>
+    
+    <!--header della pagina-->
+    <header th:replace="fragments/base.html :: intestazione">
+      
+    </header>
+    
+
+    <section>
+
+      <!--artista-->
+      <div id="contenitoreInformazioniArtista">
+        <!--informazioni artista-->
+        <div id="metaContenitoreInformazioniArtista">
+          <!--nome e cognome-->
+          <div th:object="${artista}" th:text="|${artista.nome} ${artista.cognome}|" id="nomeCognome" class="informazioneArtista">Cristiano Bonora</div>
+
+          <!--data, luogo, di nascita e morte-->
+          <div th:object="${artista}" th:text="|${artista.luogoNascita}, ${artista.dataNascita}| " class="informazioneArtista">Milano, Italia</div>
+
+          <div th:if="${artista.dataMorte}" th:object="${artista}" th:text="|${artista.luogoMorte}, ${artista.dataMorte}| " class="informazioneArtista">Milano, Italia</div>
+
+          <!--nazionalita-->
+          <div th:object="${artista}" th:text="|Nazionalità: ${artista.nazionalita}|" class="informazioneArtista">Nazionalità: Italiana</div>
+
+        </div>
+      </div>
+
+      <!--sezione opere-->
+      <div>
+        
+        <!--opere-->
+        <h3 th:text="#{titolo.opere}">OPERE</h3>
+
+        <!--opere dell'artista-->
+        <div id="displayOpere">
+
+          <!--singola Opera-->
+          <div th:each="opera : ${opere}" class="item">
+            <a th:href = "@{'/opera' + '/' + ${opera.id}}" class="caption">
+            <img th:src="@{${opera.photosImagePath}}"/>
+              </a>
+          </div>
+
+        </div>
+
+      </div>
+
+    </section>
+    
+    <!--footer della pagina-->
+    <footer th:replace="fragments/base.html :: fondo">
+    </footer>
+
+  </body>
+</html>

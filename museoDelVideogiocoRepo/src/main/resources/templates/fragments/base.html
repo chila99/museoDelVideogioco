@@ -1,0 +1,62 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:fragment="headerfiles(title)">
+	<meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link th:href="@{/css/navBar.css}" rel="stylesheet"/>
+  <link th:href="@{/css/footer.css}" rel="stylesheet"/>
+  <link th:href="@{/css/root.css}"  rel="stylesheet"/>
+  <link th:href="@{/css/media.css}" rel="stylesheet"/>
+  <link rel="preconnect" href="https://fonts.gstatic.com"> 
+  <link rel="preconnect" href="https://fonts.gstatic.com"> 
+  <link href="https://fonts.googleapis.com/css2?family=Mate+SC&family=Merriweather:wght@300&display=swap" rel="stylesheet">
+  <title th:text="${title}"></title>
+</head>
+<body>
+  
+	<header th:fragment="intestazione">
+		 <!--barra di navigazione-->
+    <nav>
+
+      <!--nome del museo-->
+      <div id="barraTitoloMuseo" class="elementoNavBar">
+        <a th:href="@{/home}" th:text="#{titolo}" id="titoloMuseo">Museo Del Videogioco</a>
+      </div>
+      
+      <!--menu scelta-->
+      <div id="menu" class="elementoNavBar">
+
+        <a th:text="#{artisti}" th:href="@{/artisti}" href="artistiPageMuseo.html">Artisti</a>
+
+        <a th:text="#{collezioni}" th:href="@{/collezioni}" href="collezioniPageMuseo.html">Collezioni</a>
+
+        <a th:text="#{opere}" th:href="@{/opere}" href="operePageMuseo.html">Opere</a>
+
+        <a th:text="#{informazioni}" th:href="@{/informazioni}" href="informazioniPageMuseo.html">Chi siamo</a>
+
+      </div>
+      
+    </nav>
+
+	</header>
+
+	<footer th:fragment="fondo">
+
+		 <div id="contenitoreFooter">
+
+        <div class="elementoFooter">via della cecchignola 14, Roma, Italia &nbsp;|&nbsp;  gameMuseum@outlook.it &nbsp;|&nbsp; +39 06495882933</div>
+
+        <div class="elementoFooter">Enjoy</div>
+
+        <div class="elementoFooter"><a class="elementoFooter" th:text="#{ ${#authorization.expression('hasAnyAuthority(''ADMIN'')')} ? 'admin.home' : 'login.ancora'}"
+        th:href="@{ ${#authorization.expression('hasAnyAuthority(''ADMIN'')')} ? '/default' : '/login'}"
+        >Entra come un amministratore</a></div>
+
+        <div class="elementoFooter">
+          <a th:if="${#authorization.expression('hasAnyAuthority(''ADMIN'')')}" th:text="#{logout}" th:href="@{/logout}">Log out</a>
+        </div>
+
+      </div>
+	</footer>
+</body>
+</html>

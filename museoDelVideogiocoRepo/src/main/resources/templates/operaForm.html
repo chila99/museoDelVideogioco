@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+  <head th:replace="fragments/base.html :: headerfiles(title=#{header.inserisciOpera})">
+  </head>
+  <head>
+    <link th:href="@{/css/loginForm.css}" rel="stylesheet"/>
+  </head>
+  <body>
+    
+    <!--header della pagina-->
+    <header th:replace="fragments/base.html :: intestazione">
+    </header>
+    
+    <section>
+
+      <div id="titoloLogin"  th:href="#{opera.inserisci}">Inserisci una nuova opera</div>
+
+      <form th:object="${opera}" th:action="@{/admin/addOpera}" method="POST" enctype="multipart/form-data">
+
+        <div id="elementiForm">
+
+          <div  class="metaElementoForm">
+
+            <div class="elementoForm">
+              <div th:text="#{opera.form.titolo}">Titolo</div>
+              <div>
+                <input th:object="${opera}" th:field="${opera.titolo}" type="text" name="titolo" required/>
+              </div>
+            </div>
+
+            <div class="elementoForm">
+              <div th:text="#{opera.form.descrizione}">Descrizione</div>
+              <div>
+                <textarea th:object="${opera}" th:field="${opera.descrizione}" type="text" name="descrizione" required/>
+              </div>
+            </div>
+
+            <div class="elementoForm">
+              <div th:text="#{opera.form.annoRealizzazione}">Anno di realizzazione</div>
+              <div>
+                <input class="data" th:object="${opera}" th:field="${opera.annoRealizzazione}" type="number" pattern="[0-9]{4}" maxlength="4" name="annoRealizzazione" required/>
+              </div>
+            </div>
+
+          </div>
+
+          <div id="elementoScelta" class="metaElementoForm">
+
+            <div class="elementoForm">
+              <div th:text="#{opera.form.artista}">Artista</div>
+              <select name="artista_id">
+                <option th:each="artista : ${artisti}" th:text="|${artista.nome} ${artista.cognome}|"
+                th:value="${artista.id}"></option>
+              </select>
+            </div>
+
+            <div class="elementoForm">
+              <div th:text="#{opera.form.collezione}">Collezione</div>
+              <select name="collezione_id">
+                <option th:each="collezione : ${collezioni}" th:text="${collezione.nome}" th:value="${collezione.id}"></option>
+              </select>
+            </div>
+
+            <div id="inputFoto" class="elementoForm">
+              <div th:text="#{opera.form.foto}">Foto</div>
+              <input type="file" name="image" accept="image/png, image/jpeg" required />
+            </div>
+
+          </div>
+
+      </div>
+
+        <button th:text="#{artista.form.inserisci}" type="submit">Inserisci</button>
+
+        <div th:if="${#fields.hasGlobalErrors()}">
+          <p class="errori" th:each="err : ${fields.globalErrors()}" th:text="${err}"/>
+        </div>
+
+      </form>
+  
+    </section>
+    
+    <!--footer della pagina-->
+    <footer th:replace="fragments/base.html :: fondo">
+    </footer>
+    
+  </body>
+</html>

@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+  <head th:replace="fragments/base.html :: headerfiles(title=#{header.opera})">
+  </head>
+  <head>
+      <link th:href="@{/css/operaPageMuseo.css}" rel="stylesheet"/>
+  </head>
+  <body>
+    
+    <!--header della pagina-->
+    <header th:replace="fragments/base.html :: intestazione"></header>
+    
+    <section>
+
+      <!--immagine dell'opera-->
+      <img th:object="${opera}"  th:src="@{${opera.photosImagePath}}"/>
+
+      <!--descrizione opera-->
+      <div id="descrizioneOpera">
+
+        <!--titolo e autore-->
+        <div th:object="${opera}" id="titoloAutore" class="riquadroDescrizione">
+          <div th:text="*{titolo}" id="titolo">God of War
+          </div>
+
+          <a th:object="${artista}" th:text="|*{nome} *{cognome} · ${opera.annoRealizzazione}|" th:href="@{'/artista' + '/' + ${artista.id}}" id="autore">Cristiano Bonora
+          </a>
+        </div>
+
+        <!--descrizione testuale dell'opera-->
+        <div th:object="${opera}" th:text="*{descrizione}" id="descrizione" class="riquadroDescrizione">
+          Foto realizzata da Cristiano Bonora raffigurante lo scontro del protagonista di "God of War" "Kratos" in uno scontro con un orco.
+        </div>
+
+      </div>
+    </section>
+    
+    <!--footer della pagina-->
+    <footer th:replace="fragments/base.html :: fondo"></footer>
+  </body>
+</html>

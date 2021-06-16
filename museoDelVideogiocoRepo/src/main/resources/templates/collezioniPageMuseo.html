@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+  <head th:replace="fragments/base.html :: headerfiles(title=#{header.collezioni})">
+  </head>
+  <head>
+    <link th:href="@{/css/liste.css}" rel="stylesheet"/>
+  </head>
+    <body>
+    
+    <!--header della pagina-->
+    <header th:replace="fragments/base.html :: intestazione">
+      
+    </header>
+    
+    <section>
+
+      <h2 th:text="#{titolo.collezioni}">COLLEZIONI</h2>
+
+      <ul th:each = "collezione : ${collezioni}">
+        
+        <div id="singolaOpera">
+          <li>
+            <a th:href = "@{'/collezioni' + '/' + ${collezione.id}}"
+              th:text = "|${collezione.nome}|">"La bellezza" Davide Molitierno</a>
+          </li>
+
+          <div id="elimina" th:if="${#authorization.expression('hasAnyAuthority(''ADMIN'')')}">
+                <a th:href="@{'/admin/removeCollezione' + '/' + ${collezione.id}}" th:text="#{elimina}" class = "bottoneElimina"></a>
+              </div>
+
+          </div>
+      </ul>      
+
+    </section>
+    
+    <!--footer della pagina-->
+    <footer th:replace="fragments/base.html :: fondo">
+    </footer>
+
+  </body>
+</html>

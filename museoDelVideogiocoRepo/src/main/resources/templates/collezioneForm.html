@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+  <head th:replace="fragments/base.html :: headerfiles(title=#{header.inserisciCollezione})">
+  </head>
+  <head>
+    <link th:href="@{/css/loginForm.css}" rel="stylesheet"/>
+  </head>
+  <body>
+    
+    <!--header della pagina-->
+    <header th:replace="fragments/base.html :: intestazione">
+    </header>
+    
+    <section>
+
+      <div id="titoloLogin"  th:href="#{collezione.inserisci}">Inserisci una nuova collezione</div>
+
+      <form th:object="${collezione}" th:action="@{/admin/addCollezione}" method="POST">
+
+      <input type="text" style="display: none;" name="matricola" th:value="${matricola}"></input>
+
+        <div class="elementoForm">
+          <div th:text="#{collezione.form.nome}">Nome</div>
+          <div>
+            <input th:object="${collezione}" th:field="${collezione.nome}" type="text" name="collezione.nome" required/>
+          </div>
+        </div>
+
+        <div class="elementoForm">
+          <div th:text="#{collezione.form.descrizione}">Descrizione</div>
+          <div>
+            <textarea th:object="${collezione}" th:field="${collezione.descrizione}" type="text" name="collezione.descrizione" required/>
+          </div>
+        </div>
+
+        <button th:text="#{artista.form.inserisci}" type="submit">Inserisci</button>
+
+        <div th:if="${#fields.hasGlobalErrors()}">
+        <p class="errori" th:each="err : ${#fields.globalErrors()}" th:text="${err}"/>
+      </div>
+        
+      </form>
+  
+    </section>
+    
+    <!--footer della pagina-->
+    <footer th:replace="fragments/base.html :: fondo">
+    </footer>
+    
+  </body>
+</html>

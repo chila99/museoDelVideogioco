@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+  <head th:replace="fragments/base.html :: headerfiles(title=#{header.collezione})">
+  </head>
+  <head>
+    <link th:href="@{/css/collezionePageMuseo.css}" rel="stylesheet"/>
+  </head>
+  <body>
+    
+    <!--headere della pagina-->
+    <header th:replace="fragments/base.html :: intestazione">
+    </header>
+    
+
+    <section>
+
+      <!--sezione descrizione collezione-->
+      <div id="descrizioneCollezione">
+
+        <!--titolo collezione-->
+        <div th:object="${collezione}" th:text="*{nome}" id="titoloCollezione" class="elementoDescrizioneCollezione">TITOLO COLLEZIONE</div>
+
+        <!--nome del curatore-->
+        <div th:object="${curatore}" th:text="'Curatore: ' + *{nome} + ' ' +*{cognome}"  id="nomeCuratore" class="elementoDescrizioneCollezione">nome del curatore</div>
+
+        <div th:object="${collezione}" th:text="*{descrizione}" class="elementoDescrizioneCollezione">DESCRIZIONE COLLEZIONE</div>
+
+      </div>
+      <!--sezione opere-->
+      <div>
+        
+        <!--opere-->
+        <h3 th:text="#{titolo.opere}">OPERE</h3>
+
+        <!--opere della collezione-->
+        <div id="displayOpere">
+
+          <!--singola Opera-->
+          <div th:each="opera : ${opere}" class="item">
+              <a th:href = "@{'/opera' + '/' + ${opera.id}}" class="caption"><img th:src="@{${opera.photosImagePath}}"/></a>
+          </div>
+
+        </div>
+
+      </div>
+
+    </section>
+    
+    <!--footer della pagina-->
+    <footer th:replace="fragments/base.html :: fondo">
+    </footer>
+
+  </body>
+</html>

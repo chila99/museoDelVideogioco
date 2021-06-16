@@ -1,0 +1,47 @@
+:root{
+  --grigioBello: #38383b;
+};
+
+
+
+section{
+	margin: 30px 17%;
+	}
+
+/*stile presentazione opera*/
+img{
+  margin-top: 60px;
+  width: 100%;
+}
+
+#descrizioneOpera{
+  width: 100%;
+  height: auto;
+  min-height: 50px;
+  display: flex;
+  margin-bottom: 50px;
+}
+
+.riquadroDescrizione{
+  width: 50%;
+}
+
+#titolo{
+  padding: 2%;
+  font-size: calc(1rem + 1vw);
+  font-weight: bold;
+  margin-left: 5%;
+}
+
+#autore{
+  padding: 2%;
+  font-size: calc(0.75rem + 0.75vw);
+  margin-left: 5%;
+}
+
+#descrizione{
+  padding: 2%;
+  border-left: 2px solid;
+  border-color: var(--grigioBello);
+  font-size: calc(0.5rem + 0.5vw);
+}

@@ -1,0 +1,57 @@
+:root{
+  --grigioBello: #38383b;
+};
+
+
+section{
+  margin: 30px 17%;
+  margin-top: 200px;
+  }
+
+#descrizioneCollezione{
+  margin-top: 100px;
+  height: 200px;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start;
+}
+
+.elementoDescrizioneCollezione{
+  width: 50%;
+  margin-top: 20px;
+  font-size: calc(0.5rem + 0.75vw);
+}
+
+#titoloCollezione{
+  font-size: calc(1.25rem + 1.25vw);
+}
+
+h3{
+  font-size: calc(0.5rem + 1vw);
+}
+
+#displayOpere{
+  height: auto;
+  width: 100%;
+  margin: 10px;
+  padding-top: 20px;
+  display: flex;
+  justify-content: space-around;
+  flex-wrap: wrap;
+  border-top: 2px solid;
+  border-color-color: var(--grigioBello);
+}
+
+.item{
+  width: 45%;
+  margin-bottom: 20px;
+  vertical-align: top;
+  display: inline-block;
+  text-align: center;
+}
+
+img{
+  width: 100%;
+}

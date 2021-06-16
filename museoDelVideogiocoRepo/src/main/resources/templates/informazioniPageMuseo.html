@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+  <head th:replace="fragments/base.html :: headerfiles(title=#{header.informazioni})">
+  </head>
+  <head>
+      <link th:href="@{/css/informazioniPageMuseo.css}" rel="stylesheet"/>
+  </head>
+  <body >
+    
+    <!--headere della pagina-->
+    <header th:replace="fragments/base.html :: intestazione">
+    </header>
+    
+
+    <section>
+
+      <!--sezione principale-->
+      <div id="sezionePrincipale">
+
+        <!--immagine principale-->
+        <div class="immaginePrincipale">
+          <img th:src="@{/images/game_over.jpg}"/>
+        </div>
+
+        <!--sezione descrizione generale museo-->
+        <div id="sezioneInformazioni">
+
+          <div class="sezioneStoria">
+            Il desiderio di giocare è insito nella razza umana sin dagli albori. Per i bambini rappresenta una componente essenziale per prepararsi ad affrontare la vita, per gli adulti è semplicemente un mezzo per sfuggire alla realtà di tutti i giorni e concedersi un po' di divertimento. Come quasi tutti gli ambiti della nostra vita, anche il gioco negli ultimi decenni si è orientato verso il mondo digitale. Per questo motivo tale museo si pone l'obiettivo di presentare una delle più diffuse passioni mondiali in una chiave totalmente differente.
+          </div>
+        </div>
+
+        <!--immagine secondaria-->
+        <div id="immagineFinale" class="immaginePrincipalei">
+          <img th:src="@{/images/ps3Pad.jpg}">
+        </div>
+      </div>
+
+    </section>
+    
+    <!--footer della pagina-->
+    <footer th:replace="fragments/base.html :: fondo">
+    </footer>
+
+  </body>
+</html>

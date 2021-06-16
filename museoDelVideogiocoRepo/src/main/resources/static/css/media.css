@@ -1,0 +1,26 @@
+@media(max-width: 950px){
+	nav{
+		height: auto;
+ 	align-items: center;
+  	 flex-direction: column;
+  	 margin-bottom: 500px;
+}
+
+#barraTitoloMuseo{
+	text-align: center;
+}
+
+#menu{
+  width: 90%;
+}
+
+.sezioneStoria{
+	width: 100%;
+	border: 0px;
+	text-align: center;
+}
+
+#sezionePrincipale{
+	margin-top: 140px;
+}
+}

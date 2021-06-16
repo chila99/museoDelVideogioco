@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+   <head th:replace="fragments/base.html :: headerfiles(title=#{header.artisti})">
+  </head>
+  <head>
+    <link th:href="@{/css/liste.css}" rel="stylesheet"/>
+  </head>
+  <body>
+    
+    <!--header della pagina-->
+    <header th:replace="fragments/base.html :: intestazione">
+      
+    </header>
+    
+    <section>
+
+      <h2 th:text="#{titolo.artisti}">ARTISTI</h2>
+
+      <ul th:each = "artista : ${artisti}">
+        
+        <div id="singolaOpera">
+          <li>
+            <a href = "artistaPageMuseo.html"
+              th:href = "@{'/artista' + '/' + ${artista.id}}"
+              th:text = "|${artista.nome} ${artista.cognome}|">Cristiano Bonora</a>
+               </li>
+
+              <div id="elimina" th:if="${#authorization.expression('hasAnyAuthority(''ADMIN'')')}">
+                <a  th:href="@{'/admin/removeArtista' + '/' + ${artista.id}}" th:text="#{elimina}" class = "bottoneElimina"></a>
+              </div>
+              
+         
+      </div>
+      </ul>      
+
+    </section>
+    
+    <!--footer della pagina-->
+    <footer th:replace="fragments/base.html :: fondo">
+    </footer>
+
+  </body>
+</html>

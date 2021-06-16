@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+  <head th:replace="fragments/base.html :: headerfiles(title=#{header.home})">
+  </head>
+  <head>
+    <link th:href="@{/css/homePageMuseo.css}" rel="stylesheet"/>
+  </head>
+  <body>
+    
+    <!--header della pagina-->
+    <header th:replace="fragments/base.html :: intestazione">
+    </header>
+    
+    <section>
+
+      <div id="sezioneCentrale">
+      <!--immagini di opere di presentazione-->
+      <div class="contenitoreImmagini">
+
+        <div class="contenitoreImmaginiVerticale"><a th:href="@{/opere}"><img th:src="@{/images/AC_origins.png}"/></a></div>
+
+       <div class="contenitoreImmaginiVerticale"><a th:href="@{/opere}"><img th:src="@{/images/Aloy.png}"/></a></div>
+
+      </div>
+
+      <div class="contenitoreImmagini">
+        <div class="contenitoreImmaginiVerticale"><a th:href="@{/opere}"><img th:src="@{/images/Nathan.png}"></a></div>
+        <div class="contenitoreImmaginiVerticale"><a th:href="@{/opere}"><img th:src="@{/images/RDR2.png}"/></a></div>
+      </div>
+
+      </div>
+    </section>
+    
+    <!--footer della pagina-->
+    <footer th:replace="fragments/base.html :: fondo">
+    </footer>
+    
+  </body>
+</html>

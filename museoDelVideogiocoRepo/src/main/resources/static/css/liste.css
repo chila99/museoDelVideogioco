@@ -1,0 +1,50 @@
+/*stile della sezione principale della pagina*/
+section{
+  margin-top: 100px;
+  margin-left:  15%;
+  margin-right:  15%;
+  margin-bottom: 100px;
+  height: auto;
+  width: 70%;
+  background-color: black;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+#sezioneCentrale{
+  width: 100%;
+  height: 55.6%;
+  justify-content: space-between;
+  display: flex;
+  background-color: black;
+}
+
+.bottoneElimina{
+  color: white;
+  font-size: calc(0.3rem + 0.5vw);
+  font-weight: bold;
+}
+
+#elimina{
+  background-color: red;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 10px;
+  height: 22px;
+  width: 80px;
+}
+
+#singolaOpera{
+  display: flex;
+  justify-content: space-between;
+  flex-direction: row;
+  width: 500px;
+}
+
+li{
+  list-style: none;
+  margin-right: 8%;
+}

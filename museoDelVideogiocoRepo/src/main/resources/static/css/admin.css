@@ -1,0 +1,44 @@
+section{
+	margin-bottom: 100px;
+	margin-top: 200px;
+	margin-left: 25%;
+	margin-right: 25%;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+	align-items: center;
+	height: auto;
+	width: 50%;
+}
+
+#adminHome{
+	text-align: center;
+	font-size: calc(1rem + 1vw);
+	margin-bottom: 60px;
+}
+
+#sezionePrincipale{
+	display: flex;
+	flex-direction: row;
+	justify-content: space-between;
+	align-items: center;
+	height: auto;
+	width: 100%;
+}
+
+.gestioneAdmin{
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+	align-items: center;
+	width: 50%;
+}
+
+.sceltaAdmin{
+	margin-bottom: 20px;
+}
+
+#sezioneSinistra{
+	border-right: 2px solid;
+	border-color: white;
+}
