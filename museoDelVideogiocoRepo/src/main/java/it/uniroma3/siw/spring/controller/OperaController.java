@@ -3,8 +3,6 @@ package it.uniroma3.siw.spring.controller;
 import java.io.IOException;
 import java.util.LinkedList;
 
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -20,6 +18,7 @@ import org.springframework.web.servlet.view.RedirectView;
 
 import it.uniroma3.siw.spring.controller.validator.OperaValidator;
 import it.uniroma3.siw.spring.middleware.FileUploadUtil;
+import it.uniroma3.siw.spring.model.Artista;
 import it.uniroma3.siw.spring.model.Collezione;
 import it.uniroma3.siw.spring.model.Opera;
 import it.uniroma3.siw.spring.service.ArtistaService;
@@ -28,8 +27,6 @@ import it.uniroma3.siw.spring.service.OperaService;
 
 @Controller
 public class OperaController {
-	
-	private static final Logger logger = LogManager.getLogger(CollezioneController.class);
 	
 	@Autowired
 	private OperaService operaService;
@@ -56,26 +53,25 @@ public class OperaController {
 		model.addAttribute("opera", new Opera());
 		model.addAttribute("artisti", artistaService.tutti());
 		model.addAttribute("collezioni", collezioneService.tutti());
+		model.addAttribute("autore", new Artista());
+		model.addAttribute("collezione", new Collezione());
 		return "operaForm";
 	}
 	
 	@RequestMapping(value = "/admin/addOpera", method = RequestMethod.POST)
-	public String insertOpera(@ModelAttribute("opera") Opera opera,
-						   @ModelAttribute("artista_id") Long artista_id,
-						   @ModelAttribute("collezione_id") Long collezione_id,
-						   @RequestParam("image") MultipartFile multipartFile,
-							Model model, BindingResult bindingResult) throws IOException {
+	public String insertOpera(@ModelAttribute("autore") Artista artista,
+						      @ModelAttribute("collezione") Collezione collezione,
+						      @ModelAttribute("opera") Opera opera,
+						      @RequestParam("image") MultipartFile multipartFile,
+							  Model model, BindingResult bindingResult) throws IOException {
+		
 		this.operaValidator.validate(opera, bindingResult);
 		if(!bindingResult.hasErrors()) {
 			String fileName = StringUtils.cleanPath(multipartFile.getOriginalFilename());
 	        opera.setFoto(fileName);
-			opera.setArtista(artistaService.artistaPerId(artista_id));
+			opera.setArtista(artistaService.artistaPerId(artista.getId()));
 			opera.setCollezioni(new LinkedList<Collezione>());
-			opera.getCollezioni().add(this.collezioneService.collezionePerId(collezione_id));
-			
-			artistaService.artistaPerId(artista_id).getOpereRealizzate().add(opera);
-			
-			collezioneService.collezionePerId(collezione_id).getOpere().add(opera);
+			opera.getCollezioni().add(collezioneService.collezionePerId(collezione.getId()));
 			
 			Opera operaSalvata = operaService.inserisci(opera);
 			
@@ -85,7 +81,9 @@ public class OperaController {
 			model.addAttribute("opere", operaService.tutti());
 			return "operePageMuseo";
 		}
-		return addOpera(model);
+		model.addAttribute("artisti", artistaService.tutti());
+		model.addAttribute("collezioni", collezioneService.tutti());
+		return "operaForm";
 	}
 	
 	@RequestMapping(value = "/admin/deleteOpera/{id}", method = RequestMethod.GET)

@@ -17,7 +17,7 @@
 
       <form th:object="${collezione}" th:action="@{/admin/addCollezione}" method="POST">
 
-      <input type="text" style="display: none;" name="matricola" th:value="${matricola}"></input>
+      <input type="text" style="display: none;" name="matricola" th:value="${curatore.matricola}"></input>
 
         <div class="elementoForm">
           <div th:text="#{collezione.form.nome}">Nome</div>

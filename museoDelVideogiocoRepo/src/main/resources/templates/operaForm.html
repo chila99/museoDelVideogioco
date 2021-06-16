@@ -48,7 +48,7 @@
 
             <div class="elementoForm">
               <div th:text="#{opera.form.artista}">Artista</div>
-              <select name="artista_id">
+              <select th:field="${autore.id}" name="artista_id">
                 <option th:each="artista : ${artisti}" th:text="|${artista.nome} ${artista.cognome}|"
                 th:value="${artista.id}"></option>
               </select>
@@ -56,7 +56,7 @@
 
             <div class="elementoForm">
               <div th:text="#{opera.form.collezione}">Collezione</div>
-              <select name="collezione_id">
+              <select th:field="${collezione.id}" name="collezione_id">
                 <option th:each="collezione : ${collezioni}" th:text="${collezione.nome}" th:value="${collezione.id}"></option>
               </select>
             </div>
@@ -73,8 +73,8 @@
         <button th:text="#{artista.form.inserisci}" type="submit">Inserisci</button>
 
         <div th:if="${#fields.hasGlobalErrors()}">
-          <p class="errori" th:each="err : ${fields.globalErrors()}" th:text="${err}"/>
-        </div>
+        <p class="errori" th:each="err : ${#fields.globalErrors()}" th:text="${err}"/>
+      </div>
 
       </form>
   

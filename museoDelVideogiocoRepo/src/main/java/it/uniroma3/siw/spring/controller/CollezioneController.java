@@ -46,18 +46,19 @@ public class CollezioneController {
 	public String addCollezioneAlCuratore(@PathVariable("id") Long id,
 											Model model) {
 		Curatore curatore = this.curatoreService.cercaPerId(id);
-		model.addAttribute("matricola", curatore.getMatricola());
+		model.addAttribute("curatore", curatore);
 		model.addAttribute("collezione", new Collezione());
 		return "collezioneForm.html";
 	}
 	
 	@RequestMapping(value="/admin/addCollezione", method = RequestMethod.POST)
-	public String addCollezione(@ModelAttribute("collezione") Collezione collezione,
-								@ModelAttribute("matricola") String matricola,
+	public String addCollezione(@ModelAttribute("curatore") Curatore curatore,
+								@ModelAttribute("collezione") Collezione collezione,
 								Model model, BindingResult bindingResult) {
+		
 		this.collezioneValidator.validate(collezione, bindingResult);
 		if (!bindingResult.hasErrors()) {
-			collezione.setGestore(curatoreService.cercaPerMatricola(matricola));
+			collezione.setGestore(curatoreService.cercaPerMatricola(curatore.getMatricola()));
         	this.collezioneService.inserisci(collezione);
             model.addAttribute("collezioni", this.collezioneService.tutti());
             return "collezioniPageMuseo";
