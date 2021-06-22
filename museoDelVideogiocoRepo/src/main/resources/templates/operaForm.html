@@ -56,8 +56,8 @@
 
             <div class="elementoForm">
               <div th:text="#{opera.form.collezione}">Collezione</div>
-              <select th:field="${collezione.id}" name="collezione_id">
-                <option th:each="collezione : ${collezioni}" th:text="${collezione.nome}" th:value="${collezione.id}"></option>
+              <select th:field="${collezionee.nome}" name="collezione_id">
+                <option th:each="collezione : ${collezioni}" th:text="${collezione.nome}" th:value="${collezione.nome}"></option>
               </select>
             </div>
 

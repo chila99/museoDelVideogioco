@@ -40,4 +40,9 @@ public class CollezioneService {
 		return this.collezioneRepository.findByNome(c.getNome())!=null;
 	}
 
+	@Transactional
+	public Collezione collezionePerNome(String nome) {
+		return this.collezioneRepository.findByNome(nome);
+	}
+
 }

@@ -3,6 +3,8 @@ package it.uniroma3.siw.spring.controller;
 import java.io.IOException;
 import java.util.LinkedList;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -27,6 +29,8 @@ import it.uniroma3.siw.spring.service.OperaService;
 
 @Controller
 public class OperaController {
+	
+	private static final Logger logger =  LogManager.getLogger(OperaController.class);
 	
 	@Autowired
 	private OperaService operaService;
@@ -54,24 +58,24 @@ public class OperaController {
 		model.addAttribute("artisti", artistaService.tutti());
 		model.addAttribute("collezioni", collezioneService.tutti());
 		model.addAttribute("autore", new Artista());
-		model.addAttribute("collezione", new Collezione());
+		model.addAttribute("collezionee", new Collezione());
 		return "operaForm";
 	}
 	
 	@RequestMapping(value = "/admin/addOpera", method = RequestMethod.POST)
 	public String insertOpera(@ModelAttribute("autore") Artista artista,
-						      @ModelAttribute("collezione") Collezione collezione,
+						      @ModelAttribute("collezionee") Collezione collezione,
 						      @ModelAttribute("opera") Opera opera,
 						      @RequestParam("image") MultipartFile multipartFile,
 							  Model model, BindingResult bindingResult) throws IOException {
-		
+		logger.debug(collezione);
 		this.operaValidator.validate(opera, bindingResult);
 		if(!bindingResult.hasErrors()) {
 			String fileName = StringUtils.cleanPath(multipartFile.getOriginalFilename());
 	        opera.setFoto(fileName);
 			opera.setArtista(artistaService.artistaPerId(artista.getId()));
 			opera.setCollezioni(new LinkedList<Collezione>());
-			opera.getCollezioni().add(collezioneService.collezionePerId(collezione.getId()));
+			opera.getCollezioni().add(collezioneService.collezionePerNome(collezione.getNome()));
 			
 			Opera operaSalvata = operaService.inserisci(opera);
 			

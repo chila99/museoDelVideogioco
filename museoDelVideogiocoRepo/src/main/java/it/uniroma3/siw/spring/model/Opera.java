@@ -36,6 +36,7 @@ public class Opera {
 	@Column(nullable = false)
 	@NonNull
 	private Long annoRealizzazione;
+	@Column(length = 10000)
 	private String descrizione;
 	
 	@ManyToMany

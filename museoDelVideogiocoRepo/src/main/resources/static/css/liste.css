@@ -11,6 +11,7 @@ section{
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  font-size: calc(0.85rem + 0.85vw);
 }
 
 #sezioneCentrale{
@@ -42,9 +43,12 @@ section{
   justify-content: space-between;
   flex-direction: row;
   width: 500px;
+  border-bottom: 2px solid white;
+  padding-bottom: 10px;
 }
 
 li{
   list-style: none;
   margin-right: 8%;
+  font-size: calc(0.7rem + 0.7vw);
 }

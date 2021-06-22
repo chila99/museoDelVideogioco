@@ -40,8 +40,8 @@ img{
 }
 
 #descrizione{
-  padding: 2%;
+  padding: 1%;
   border-left: 2px solid;
   border-color: var(--grigioBello);
-  font-size: calc(0.5rem + 0.5vw);
+  font-size: calc(0.65rem + 0.65vw);
 }

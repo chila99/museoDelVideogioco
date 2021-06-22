@@ -18,7 +18,7 @@
 
       <ul th:each = "curatore : ${curatori}">
         
-        <li>
+        <li id="singolaOpera">
           <a th:href = "@{'/admin/collezione' + '/' + ${curatore.id}}"
             th:text = "|${curatore.nome} ${curatore.cognome} ${curatore.matricola}|"></a>
         </li>
