@@ -97,5 +97,31 @@ public class OperaController {
 		return new RedirectView("/opere");
 	}
 	
-
+	@RequestMapping(value = "/admin/modificaOpera/{id}", method = RequestMethod.GET)
+	public String modificaOpera(@PathVariable("id") Long id, Model model) {
+		model.addAttribute("opera", this.operaService.operaPerId(id));
+		model.addAttribute("collezioni", this.collezioneService.tutti());
+		model.addAttribute("artisti", this.artistaService.tutti());	
+		model.addAttribute("collezionee", new Collezione());
+		model.addAttribute("autore", new Artista());
+		return "operaForm";
+	}
+	
+	@RequestMapping(value = "/admin/modificaOpera", method = RequestMethod.POST)
+	public String modificaOpera(@ModelAttribute("opera") Opera opera,
+								BindingResult bindingResult, @ModelAttribute("autore") Artista artista,
+								@ModelAttribute("collezionee") Collezione collezione, Model model) {
+		//this.operaValidator.validate(opera, bindingResult);
+		if(!bindingResult.hasErrors()) {
+			opera = this.operaService.operaPerId(opera.getId());
+			opera.setArtista(this.artistaService.artistaPerId(artista.getId()));
+			opera.getCollezioni().add(this.collezioneService.collezionePerNome(collezione.getNome()));
+			this.operaService.inserisci(opera);
+			return "operePageMuseo";
+			}
+		model.addAttribute("artisti", artistaService.tutti());
+		model.addAttribute("collezioni", collezioneService.tutti());
+		model.addAttribute("opera", opera);
+		return "operaForm";
+	}
 }

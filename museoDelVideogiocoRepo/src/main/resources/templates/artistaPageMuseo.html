@@ -37,7 +37,7 @@
       <div>
         
         <!--opere-->
-        <h3 th:text="#{titolo.opere}">OPERE</h3>
+        <h3 th:text="|#{titolo.opere} ${#lists.size(artista.opereRealizzate)}|">OPERE</h3>
 
         <!--opere dell'artista-->
         <div id="displayOpere">
